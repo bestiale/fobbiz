@@ -33,9 +33,9 @@ LANGUAGE_CODE = 'de'
 
 LANGUAGES = (
     ('de', _('German')),
-    ('en', _('English')),
-    ('fr', _('French')),
-    ('it', _('Italian')),
+    # ('en', _('English')),
+    # ('fr', _('French')),
+    # ('it', _('Italian')),
 )
 
 SITE_ID = 1
@@ -112,9 +112,11 @@ INSTALLED_APPS = (
     'feincms.module.medialibrary',
     'feincms_oembed',
 
-    #'elephantblog',
+    'elephantblog',
 
     'fobbiz',
+    'fobbiz.veranstaltungen',
+    'fobbiz.moodboard',
 )
 
 from memcacheify import memcacheify
@@ -129,7 +131,12 @@ _ = lambda x: x
 
 FHADMIN_GROUPS_CONFIG = [
     (_('Content'), {
-        'apps': ('page', 'medialibrary'),
+        'apps': (
+            'page',
+            'medialibrary',
+            'elephantblog',
+            'veranstaltungen',
+            'moodboard'),
     }),
     (_('Others'), {
         'apps': (FHADMIN_GROUPS_REMAINING),
@@ -137,6 +144,9 @@ FHADMIN_GROUPS_CONFIG = [
     (_('Settings and users'), {
         'apps': ('sites', 'auth'),
     }),
+    # (_('Events'), {
+    #     'apps': ('veranstaltungen'),
+    # }),
 
 ]
 
@@ -152,24 +162,25 @@ SOUTH_MIGRATION_MODULES = dict((app, 'fobbiz.migrate.%s' % app) for app in (
 
 GA_CODE = os.getenv('GA_CODE', '')
 
+BLOG_TITLE = 'Veranstaltungen'
 
-# def elephantblog_entry_url_app(self):
-#     from feincms.content.application.models import app_reverse
-#     return app_reverse('elephantblog_entry_detail', 'elephantblog.urls', kwargs={
-#         'year': self.published_on.strftime('%Y'),
-#         'month': self.published_on.strftime('%m'),
-#         'day': self.published_on.strftime('%d'),
-#         'slug': self.slug,
-#     })
+def elephantblog_entry_url_app(self):
+    from feincms.content.application.models import app_reverse
+    return app_reverse('elephantblog_entry_detail', 'elephantblog.urls', kwargs={
+        'year': self.published_on.strftime('%Y'),
+        'month': self.published_on.strftime('%m'),
+        'day': self.published_on.strftime('%d'),
+        'slug': self.slug,
+    })
 
 
-# def elephantblog_categorytranslation_url_app(self):
-#     from feincms.content.application.models import app_reverse
-#     return app_reverse('elephantblog_category_detail', 'elephantblog.urls', kwargs={
-#         'slug': self.slug,
-#     })
+def elephantblog_categorytranslation_url_app(self):
+    from feincms.content.application.models import app_reverse
+    return app_reverse('elephantblog_category_detail', 'elephantblog.urls', kwargs={
+        'slug': self.slug,
+    })
 
-# ABSOLUTE_URL_OVERRIDES = {
-#     'elephantblog.entry': elephantblog_entry_url_app,
-#     'elephantblog.categorytranslation': elephantblog_categorytranslation_url_app,
-# }
+ABSOLUTE_URL_OVERRIDES = {
+    'elephantblog.entry': elephantblog_entry_url_app,
+    'elephantblog.categorytranslation': elephantblog_categorytranslation_url_app,
+}

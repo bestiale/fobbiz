@@ -14,51 +14,74 @@
     <meta property="fb:app_id" content="{{ FACEBOOK_APP_ID }}">
     {% block extra-og-tags %}{% endblock %}
 
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/flexslider.css" type="text/css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/foundation.min.css" type="text/css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css">
+   <link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/41518cde-dd45-418f-b869-51abe0d07629.css"/>
 
     <title>{% block title %}{{ feincms_page.page_title }}{% endblock %}</title>
     {% block extra-head %}{% endblock %}
 </head>
 
 <body>
-    <header>
-        <div class="wrapper">
-            <nav>
-                {% feincms_nav feincms_page level=2 depth=1 as toplevel %}
-                {% for p in toplevel %}
-                    <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
-                        {{ p.title }}
-                    </a>
-                {% endfor %}
-            </nav>
-        </div>
-    </header>
-
-    <div id="maincontent" class="wrapper">
-        {% block content %}
-            {% feincms_render_region feincms_page 'main' request %}
+    <div class="row">
+        <header>
+                <img src="{{ STATIC_URL }}img/design/fobbiz-logo.png">
+                <nav class="large-12 columns">
+                    <div class="nav-bar left">
+                       <ul class="button-group">
+                        {% feincms_nav feincms_page level=1 depth=1 as toplevel %}
+                        {% for p in toplevel %}
+                            <li class="nav-li">
+                                <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
+                                {{ p.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                        <ul class="button-group">
+                        {% feincms_nav feincms_page level=2 depth=1 as sublevel %}
+                        {% for p in sublevel %}
+                            <li class="nav-li">
+                                <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
+                                {{ p.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                      </div>
+                </nav>
+        </header>
+    </div>
+        {% block moodboard %}
+            {% feincms_render_region feincms_page 'moodboard' request %}
         {% endblock %}
+    <div class="row">
+        <div id="maincontent" class="large-8 columns">
+            {% block content %}
+                {% feincms_render_region feincms_page 'main' request %}
+            {% endblock %}
+        </div>
+        <div id="sidebar" class="large-4 columns">
+            <h3>Aktuell</h3>
+            {% block sidebar %}
+                {% feincms_render_region feincms_page 'sidebar' request %}
+            {% endblock %}
+        </div>
     </div>
 
     <footer>
-        <div class="wrapper">
-            {% if footer %}
-            <nav>
-                {% feincms_nav footer level=3 depth=1 as footer_nav %}
-                {% for p in footer_nav %}
-                    <a href="{{ p.get_absolute_url }}" class="{% if p == feincms_page %}current{% endif %}">
-                        {{ p.title }}
-                    </a>
-                    {% if not forloop.last %}|{% endif %}
-                {% endfor %}
-            </nav>
-            {% endif %}
-            <div class="language-links">
-                {% feincms_nav feincms_page level=0 depth=2 as lang_nav %}
-                {% for p in lang_nav %}
-                    <a href="{{ p.get_absolute_url }}">{{ p.slug|upper }}</a>
-                    {% if not forloop.last %}|{% endif %}
-                {% endfor %}
+        <div class="row">
+            <div class="large-8 columns">
+                <p>schweizer Forum für Berufsbildung und Internationale Zusammenarbeit</p>
+                <p>Forum Suisse pour la Formation Professionelle et la Cooperation Internationale</p>
+                <p>Swiss Forum for Skills Development and International Cooperation</p>
+            </div>
+
+            <div class="large-4 columns">
+                <h3>KONTAKT</h3>
+                <p>Kontaktadresse | PLZ | Ort</p>
+                <a href="mailto:kontakt@fobbiz.ch">kontakt@fobbiz.ch</a>
             </div>
         </div>
     </footer>
@@ -79,6 +102,14 @@
     </script>
 
     <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.flexslider.js"></script>
+    <script>
+    $(window).load(function() {
+      $('.flexslider').flexslider({
+        animation: "slide"
+      });
+    });
+    </script>
     {{ feincms_page.content.media }}
     {% block javascript %}{% endblock %}
 </body>

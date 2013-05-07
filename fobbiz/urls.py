@@ -29,6 +29,17 @@ else:
         }),
     )
 
+
+# Elephantblog urls
+urlpatterns += patterns('',
+    url(r'^blog/', include('elephantblog.urls')),
+)
+
+# Veranstaltung urls
+urlpatterns += patterns('',
+    url(r'^veranstaltung/', include('fobbiz.veranstaltungen.urls')),
+    url(r'^moodboard/', include('fobbiz.moodboard.urls')),
+)
 urlpatterns += patterns('',
     url(r'', include('feincms.urls')),
 )

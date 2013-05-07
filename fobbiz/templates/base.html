@@ -1,0 +1,85 @@
+{% load i18n feincms_tags feincms_page_tags %}
+{% load url from future %}
+
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="index,follow,noodp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <meta property="og:title" content="{% block og-title %}{{ feincms_page.page_title }}{% endblock %}">
+    <meta property="og:type" content="{% block og-type %}website{% endblock %}">
+    <meta property="og:url" content="http://{{ request.get_host }}{{ request.get_full_path }}">
+    <meta property="fb:app_id" content="{{ FACEBOOK_APP_ID }}">
+    {% block extra-og-tags %}{% endblock %}
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css">
+
+    <title>{% block title %}{{ feincms_page.page_title }}{% endblock %}</title>
+    {% block extra-head %}{% endblock %}
+</head>
+
+<body>
+    <header>
+        <div class="wrapper">
+            <nav>
+                {% feincms_nav feincms_page level=2 depth=1 as toplevel %}
+                {% for p in toplevel %}
+                    <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
+                        {{ p.title }}
+                    </a>
+                {% endfor %}
+            </nav>
+        </div>
+    </header>
+
+    <div id="maincontent" class="wrapper">
+        {% block content %}
+            {% feincms_render_region feincms_page 'main' request %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <div class="wrapper">
+            {% if footer %}
+            <nav>
+                {% feincms_nav footer level=3 depth=1 as footer_nav %}
+                {% for p in footer_nav %}
+                    <a href="{{ p.get_absolute_url }}" class="{% if p == feincms_page %}current{% endif %}">
+                        {{ p.title }}
+                    </a>
+                    {% if not forloop.last %}|{% endif %}
+                {% endfor %}
+            </nav>
+            {% endif %}
+            <div class="language-links">
+                {% feincms_nav feincms_page level=0 depth=2 as lang_nav %}
+                {% for p in lang_nav %}
+                    <a href="{{ p.get_absolute_url }}">{{ p.slug|upper }}</a>
+                    {% if not forloop.last %}|{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </footer>
+
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{{ GA_CODE }}']);
+      _gaq.push(['_trackPageview']);
+
+      {% block gaq %}{% endblock %}
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery-1.9.1.min.js"></script>
+    {{ feincms_page.content.media }}
+    {% block javascript %}{% endblock %}
+</body>
+</html>

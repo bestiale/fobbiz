@@ -30,16 +30,13 @@ else:
     )
 
 
-# Elephantblog urls
 urlpatterns += patterns('',
+    # Blog urls
     url(r'^blog/', include('elephantblog.urls')),
-)
-
-# Veranstaltung urls
-urlpatterns += patterns('',
+    # Veranstaltung urls
     url(r'^veranstaltung/', include('fobbiz.veranstaltungen.urls')),
+    # Moodboard urls
     url(r'^moodboard/', include('fobbiz.moodboard.urls')),
-)
-urlpatterns += patterns('',
+    # FeinCMS urls
     url(r'', include('feincms.urls')),
 )

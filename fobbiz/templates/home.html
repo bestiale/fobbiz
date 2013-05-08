@@ -1,4 +1,4 @@
-{% load i18n feincms_tags feincms_page_tags mptt_tags %}
+{% load i18n feincms_tags feincms_page_tags %}
 {% load url from future %}
 
 <!doctype html>
@@ -53,13 +53,13 @@
             </nav>
         </header>
     </div>
+        {% block moodboard %}
+            {% feincms_render_region feincms_page 'moodboard' request %}
+        {% endblock %}
     <div class="row">
         <div id="maincontent" class="large-8 columns">
             {% block content %}
-                <h1>{% if feincms_page.content_title %}{{ feincms_page.content_title }}{% else %}{{ feincms_page.title }}{% endif %}</h1>
-
                 {% feincms_render_region feincms_page 'main' request %}
-
             {% endblock %}
         </div>
         <div id="sidebar" class="large-4 columns">

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="veranstaltung" class="row">
+	<div class="veranstaltung">
+		<div class="large-12 columns">
+		<h1>Veranstaltungen</h1>
+		<p>{{ veranstaltung.datum }}</p>
+		<h2>{{ veranstaltung.titel }}</h2>
+			<img src="{{ veranstaltung.image.url }}"/>
+			<p>{{ veranstaltung.beschreibung }}</p>
+		</div>
+	</div>
+</div>
+
+
+{% include "veranstaltungen/anmelde_form.html" %}
+
+{% endblock %}

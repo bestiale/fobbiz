@@ -27,15 +27,21 @@ OEMBED_TYPE_CHOICES = (
 # Feincms Setup
 Page.register_templates(
     {
-        'title': 'Standard template',
-        'path': 'base.html',
+        'title': 'Home template',
+        'path': 'home.html',
         'regions': (
             ('main', _('Main content area')),
             ('sidebar', _('Sidebar content area')),
             ('moodboard', _('Moodboard area')),
         ),
-    }
-)
+        },{
+        'title': 'Base template',
+        'path': 'base.html',
+        'regions': (
+            ('main', _('Main content area')),
+            ('sidebar', _('Sidebar')),
+            ),
+})
 
 Page.register_extensions(
     'feincms.module.extensions.translations',
@@ -49,6 +55,7 @@ Page.create_content_type(OembedContent, TYPE_CHOICES=OEMBED_TYPE_CHOICES)
 Page.create_content_type(RawContent)
 Page.create_content_type(BlogEntryListContent)
 Page.create_content_type(ShowMoodboard)
+
 
 Page.create_content_type(ApplicationContent, APPLICATIONS=(
     ('elephantblog.urls', _('Blog'),),
@@ -72,4 +79,4 @@ Entry.create_content_type(RichTextContent)
 Entry.create_content_type(MediaFileContent, TYPE_CHOICES=MEDIA_TYPE_CHOICES)
 Entry.create_content_type(OembedContent, TYPE_CHOICES=OEMBED_TYPE_CHOICES)
 Entry.create_content_type(RawContent)
-Entry.create_content_type(VeranstaltungContent)
+#Entry.create_content_type(VeranstaltungContent)

@@ -1,45 +1,59 @@
+{% url "save_anmeldung" as action_url %}
+
+<div id="veranstaltung" class="row">
+{% if veranstaltung.plaetze == 0 %}
+	<p>Leider ausgebucht</p>
+{% else %}
 	<h2>Am Event Teilnehmen</h2>
 	<p>Hast du Lust auf diesen Event, melde dich hier an!</p>
+	<p>Plätze: {{ veranstaltung.plaetze }}</p>
 
-<div class="veranstaltung-form">
-	<div class="row">
-		<form action="" method="post">
-			<fieldset>
-				{% for field in form %}
-				{% if forloop.counter == 5 %}
-				<div class="row">
-				    <div class="large-3 columns">
-						{{ field.errors }}
-			            <h3>{{ field.label_tag }}</h3>
-				    </div>
-			    	<div class="large-3 columns">
-			            {{ field }}
+	<div class="veranstaltung-form">
+		<div class="row">
+			<form action="{{ action_url }}" method="post" enctype="multipart/form-data">
+				<p> {{ action_url }}</p>
+
+				<fieldset>
+					{% for field in form %}
+					{% if forloop.counter == 6 %}
+					<div class="row">
+					    <div class="large-3 columns">
+							{{ field.errors }}
+				            <h3>{{ field.label_tag }}</h3>
+					    </div>
+				    	<div class="large-3 columns">
+				            {{ field }}
+			           	</div>
+					
+					{% elif forloop.counter == 7 %}
+					    <div class="large-3 columns">
+							{{ field.errors }}
+				            <h3>{{ field.label_tag }}</h3>
+					    </div>
+				    	<div class="large-3 columns">
+				            {{ field }}
+			           	</div>
 		           	</div>
-				
-				{% elif forloop.counter == 6 %}
-				    <div class="large-3 columns">
-						{{ field.errors }}
-			            <h3>{{ field.label_tag }}</h3>
-				    </div>
-			    	<div class="large-3 columns">
-			            {{ field }}
-		           	</div>
-	           	</div>
-				{% else %}
-				<div class="row">
-				    <div class="large-3 columns">
-						{{ field.errors }}
-			            <h3>{{ field.label_tag }}</h3>
-				    </div>
-			    	<div class="large-9 columns">
-			            {{ field }}
-		           	</div>
-				</div>
-				{% endif %}
-				{% endfor %}
-				{% csrf_token %}
-				<input type="submit" value="Anmelden" class="submit" />
-			</fieldset>
-		</form>
+					{% else %}
+					<div class="row">
+					    <div class="large-3 columns">
+							{{ field.errors }}
+				            <h3>{{ field.label_tag }}</h3>
+					    </div>
+				    	<div class="large-9 columns">
+				            {{ field }}
+			           	</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+
+					{% csrf_token %}
+					<input type="hidden" name="slug" value="{{ veranstaltung.slug }}">
+					<input type="hidden" name="path" value="{{ request.get_full_path }}">
+					<input type="submit" value="Anmelden" class="submit" />
+				</fieldset>
+			</form>
+		</div>
 	</div>
+{% endif %}
 </div>

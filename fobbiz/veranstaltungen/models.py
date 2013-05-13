@@ -9,14 +9,14 @@ class Veranstaltung(models.Model):
 
 	titel = models.CharField(_('title'), max_length=100)
 	slug = models.SlugField(_('slug'), unique=True)
-	image = models.ImageField(_('image'),
-		upload_to="veranstaltungen/")
-	beschreibung = models.TextField(_('description'))
-	datum = models.DateTimeField(_('date'))
+	#image = models.ImageField(_('image'),
+		#upload_to="veranstaltungen/")
+	#beschreibung = models.TextField(_('description'))
+	datum = models.DateTimeField(_('date'), blank=True)
 	plaetze = models.IntegerField(_('place'), blank=True, null=True)
-	is_active = models.BooleanField(_('is active'), default=True)
-	erfasst = models.DateTimeField(_('add'), auto_now_add=True)
-	aktualisiert = models.DateTimeField(_('update'), auto_now=True)
+	#is_active = models.BooleanField(_('is active'), default=True)
+	#erfasst = models.DateTimeField(_('add'), auto_now_add=True)
+	#aktualisiert = models.DateTimeField(_('update'), auto_now=True)
 
 
 	class Meta:
@@ -43,6 +43,7 @@ class Anmeldung(models.Model):
 	vorname = models.CharField(_('first name'), max_length=100)
 	nachname = models.CharField(_('last name'), max_length=100)
 	e_mail = models.EmailField(_('e-mail'), max_length=254)
+	street_nr = models.CharField(_('adresse'), max_length=200)
 	plz = models.IntegerField(_('zip'))
 	ort = models.CharField(_('city'), max_length=100)
 

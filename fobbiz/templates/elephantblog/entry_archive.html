@@ -1,6 +1,6 @@
 {% extends feincms_page.template.path|default:"base.html" %}
 
-{% load feincms_tags i18n %}
+{% load feincms_tags i18n feincms_page_tags %}
 
 {% block title %}{% trans "News" %} - {{ block.super }}{% endblock %}
 
@@ -33,8 +33,11 @@
             </span>
         </header>
         <div class="entry-summary">
-            {% if entry.first_image %}{{ entry.first_image.render }}{% endif %}
-            {% if entry.first_richtext %}{{ entry.first_richtext.render }}{% endif %}
+            {{ entry.first_richtext.render|truncatewords:20 }}
+            <a href="{{ entry.get_absolute_url }}">
+                <img src="../static/img/design/arrow-mehr.png">
+                mehr dazu
+            </a>
         </div>
     </article>
 {% endfor %}
@@ -59,4 +62,18 @@
     {% endif %}
 </div>
 {% endblock %}
+{% endblock %}
+{% block sidebar %}
+<div class="sidebar-nav">
+   <ul class="button-group">
+    {% feincms_nav feincms_page level=3 depth=1 as sublevel %}
+    {% for p in sublevel %}
+        <li class="nav-li">
+            <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
+            {{ p.title }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
 {% endblock %}

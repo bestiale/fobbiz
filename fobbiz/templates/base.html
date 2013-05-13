@@ -59,6 +59,7 @@
                 <h1>{% if feincms_page.content_title %}{{ feincms_page.content_title }}{% else %}{{ feincms_page.title }}{% endif %}</h1>
 
                 {% feincms_render_region feincms_page 'main' request %}
+                {% block main %}{% endblock %}
 
             {% endblock %}
         </div>

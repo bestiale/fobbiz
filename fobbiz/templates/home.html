@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/flexslider.css" type="text/css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/foundation.min.css" type="text/css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css">
-   <link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/41518cde-dd45-418f-b869-51abe0d07629.css"/>
+    <link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/41518cde-dd45-418f-b869-51abe0d07629.css"/>
+    <script src="{{ STATIC_URL }}js/vendor/custom.modernizr.js"></script>
 
     <title>{% block title %}{{ feincms_page.page_title }}{% endblock %}</title>
     {% block extra-head %}{% endblock %}
@@ -29,26 +30,30 @@
             <img src="{{ STATIC_URL }}img/design/fobbiz-logo.png">
             <nav class="large-12 columns">
                 <div class="nav-bar left">
-                   <ul class="button-group">
-                    {% feincms_nav feincms_page level=1 depth=1 as toplevel %}
-                    {% for p in toplevel %}
-                        <li class="nav-li">
-                            <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
-                            {{ p.title }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                    </ul>
-                    <ul class="button-group">
-                    {% feincms_nav feincms_page level=2 depth=1 as sublevel %}
-                    {% for p in sublevel %}
-                        <li class="nav-li">
-                            <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
-                            {{ p.title }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                    </ul>
+                    <div class="row">
+                        <ul class="button-group">
+                        {% feincms_nav feincms_page level=1 depth=1 as toplevel %}
+                        {% for p in toplevel %}
+                            <li class="nav-li">
+                                <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
+                                {{ p.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <ul class="button-group">
+                        {% feincms_nav feincms_page level=2 depth=1 as sublevel %}
+                        {% for p in sublevel %}
+                            <li class="nav-li">
+                                <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
+                                {{ p.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
                   </div>
             </nav>
         </header>
@@ -58,6 +63,9 @@
         {% endblock %}
     <div class="row">
         <div id="maincontent" class="large-8 columns">
+            <div class="row">
+                <h1>{% if feincms_page.content_title %}{{ feincms_page.content_title }}{% else %}{{ feincms_page.title }}{% endif %}</h1>
+            </div>
             {% block content %}
                 {% feincms_render_region feincms_page 'main' request %}
             {% endblock %}
@@ -103,12 +111,18 @@
 
     <script type="text/javascript" src="{{ STATIC_URL }}lib/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.flexslider.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/foundation.min.js"></script>
     <script>
     $(window).load(function() {
       $('.flexslider').flexslider({
         animation: "slide"
       });
     });
+    </script>
+    <script>
+      $(function(){
+        $(document).foundation();    
+      })
     </script>
     {{ feincms_page.content.media }}
     {% block javascript %}{% endblock %}

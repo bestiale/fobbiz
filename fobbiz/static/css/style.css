@@ -111,6 +111,7 @@ h1, h2, h3 {
 
 h1 {
     font-size: 40px;
+    text-transform: uppercase;
 }
 
 h2 {
@@ -134,7 +135,7 @@ header {
 }
 
 header nav {
-    border-bottom: 1px dotted black;
+    /*border-bottom: 1px dotted black;*/
 }
 
 header nav a {
@@ -163,11 +164,11 @@ header .nav-li {
     margin-left: 20px;
 }
 
-
 /* maincontent */
 
 #maincontent {
-    
+    background-image: url(../img/design/punktelinie.png);
+    background-repeat: repeat-x;
 }
 
 #sidebar p {
@@ -175,18 +176,27 @@ header .nav-li {
     font-size: 16px;
 }
 
+#sidebar {
+    /*border-bottom: 1px dotted black;*/
+    background-image: url(../img/design/punktelinie.png);
+    background-repeat: repeat-x;
+}
+
 #moodboard {
     display: block;
 }
 
 #veranstaltung {
-    border-top: 1px dotted black;
-    margin: 20px 0;
+    background-image: url(../img/design/punktelinie.png);
+    background-repeat: repeat-x;
+    background-position: top;
+    margin-top: 15px;
+    padding: 15px 0px;
 }
 
 #veranstaltung h1, h2 {
     text-transform: uppercase;
-    margin-top: 20px;
+    margin-top: 5px;
 }
 #veranstaltung img {
     height: 170px;
@@ -199,8 +209,17 @@ header .nav-li {
     text-transform: uppercase;
 }
 
-.veranstaltung-form h3{
+.veranstaltung_date {
+    font-family:'AvenirLTW01-85HeavyObli';
+    font-size: 16px;
+    color: #3e719d;
+}
+
+.veranstaltung-form label{
     text-transform: uppercase;
+    font-family: 'Avenir LT W01 85 Heavy';
+    font-size: 18px;
+    color: #000;
 }
 
 .veranstaltung-form input {
@@ -214,8 +233,24 @@ header .nav-li {
 }
 .veranstaltung-form .submit {
     float: right;
+    border: none;
+    -moz-box-shadow:    none;
+    -webkit-box-shadow: none;
+    box-shadow:         none;
+    background-image: url(../img/design/arrow-mehr.png);
+    background-repeat: no-repeat;
+    background-color: #FFF;
+    max-width: 130px;
+    width: 100%;
+    color: #dc2892;
+    cursor: pointer;
+    font-size: 18px;
+    font-family:'AvenirLTW01-95BlackObli';
 }
 
+.veranstaltung-form .submit:hover{
+    color: #000;
+}
 
 /* footer */
 
@@ -245,10 +280,113 @@ footer a:hover {
 
 /* Blog */
 
+.entry-content img {
+    float: left;
+    margin: 0 10px 5px 0;
+}
+
 .entry-summary a {
+    font-family:'AvenirLTW01-95BlackObli';
     color: #dc2892;
+    font-size: 18px;
 }
 
 .entry-summary a:hover{
     color: #000;
+}
+
+.pagination,
+.pagination a {
+    float: left;
+    height: 50px;
+}
+
+.pagination a {
+    margin: 15px 10px;
+}
+
+.pagination .mark {
+    color: #dc2892;
+}
+
+.pagination .page_left {
+    margin: 15px 10px;
+    background: url(../img/design/arrow-lefts.png)0 0;
+    background-repeat: no-repeat;
+    height: 14px;
+    width: 8px;
+    display: block;
+    float: left;
+}
+
+.pagination .page_left:hover {
+    background: url(../img/design/arrow-lefts.png)0 -18px;
+}
+
+.pagination .page_left_fast {
+    background: url(../img/design/arrow-left.png)0 0;
+    background-repeat: no-repeat;
+    height: 14px;
+    width: 16px;
+    display: block;
+    float: left;
+}
+
+.pagination .page_left_fast:hover {
+    background: url(../img/design/arrow-left.png)0 -18px;
+}
+
+
+.pagination .page_right {
+    margin: 15px 10px;
+    background: url(../img/design/arrow-rights.png)0 0;
+    background-repeat: no-repeat;
+    height: 14px;
+    width: 8px;
+    display: block;
+    float: left;
+}
+
+.pagination .page_right:hover {
+    background: url(../img/design/arrow-rights.png)0 -18px;
+}
+.pagination .page_right_fast {
+    background: url(../img/design/arrow-right.png)0 0;
+    background-repeat: no-repeat;
+    height: 14px;
+    width: 16px;
+    display: block;
+    float: left;
+}
+
+.pagination .page_right_fast:hover {
+    background: url(../img/design/arrow-right.png)0 -18px;
+}
+
+.hentry_archive {
+    background-image: url(../img/design/punktelinie.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    padding-bottom: 20px;
+}
+
+.side_date {
+    font-family:'AvenirLTW01-85HeavyObli';
+    font-size: 14px;
+    color: #3e719d;
+}
+
+.sidebar-nav a{
+    font-family:'Avenir LT W01 85 Heavy';
+    font-size: 18px;
+}
+
+.sidebar-nav a:hover {
+    font-family:'Avenir LT W01 95 Black';
+    color: #000;
+}
+
+.sidebar-nav a.current{
+    font-family:'Avenir LT W01 95 Black';
+    color: #F00;
 }

@@ -44,8 +44,8 @@ class Anmeldung(models.Model):
 	nachname = models.CharField(_('last name'), max_length=100)
 	e_mail = models.EmailField(_('e-mail'), max_length=254)
 	street_nr = models.CharField(_('adresse'), max_length=200)
-	plz = models.IntegerField(_('zip'))
-	ort = models.CharField(_('city'), max_length=100)
+	plz = models.IntegerField(_('plz'))
+	ort = models.CharField(_('ort'), max_length=100)
 
 	class Meta:
 		verbose_name = u'Anmeldung'

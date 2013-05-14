@@ -195,3 +195,5 @@ ABSOLUTE_URL_OVERRIDES = {
     'elephantblog.entry': elephantblog_entry_url_app,
     'elephantblog.categorytranslation': elephantblog_categorytranslation_url_app,
 }
+
+BLOG_PAGINATE_BY = 5

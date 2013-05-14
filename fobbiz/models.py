@@ -18,6 +18,8 @@ from fobbiz.moodboard.models import ShowMoodboard
 
 MEDIA_TYPE_CHOICES = (
     ('default', _('Full width')),
+    ('left', _('Left (Half width)')),
+    ('right', _('Right (Half width)')),
 )
 
 OEMBED_TYPE_CHOICES = (

@@ -3,6 +3,7 @@
 {% for entry in content.entries %}
     <article class="hentry{% if forloop.first %} first{% endif %}">
         <header>
+            <time class="side_date" datetime="{{ entry.published_on|date:'c' }}" pubdate>{{ entry.published_on|date:"j. F Y" }}</time>
             <h2 class="entry-title"><a href="{{ entry.get_absolute_url }}" rel="bookmark">{{ entry }}</a></h2>
             <p class="byline small">
                 {% for category in entry.fetched_categories %}
@@ -13,7 +14,6 @@
                     {% trans 'by' %} <span class="fn">{{ entry.author.get_full_name }}</span> |
                 </span>
                 {% endif %}
-                <time datetime="{{ entry.published_on|date:'c' }}" pubdate>{{ entry.published_on|date:"SHORT_DATE_FORMAT" }}</time>
             </p>
         </header>
         <div class="entry-summary">

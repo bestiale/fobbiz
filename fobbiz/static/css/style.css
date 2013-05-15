@@ -107,11 +107,11 @@ p {
 h1, h2, h3 {
     font-family: 'Avenir LT W01 85 Heavy';
     color: #000000;
+    text-transform: uppercase;
 }
 
 h1 {
     font-size: 40px;
-    text-transform: uppercase;
 }
 
 h2 {
@@ -125,6 +125,7 @@ h3 {
 h4 {
     font-size: 20px;
     color: #3e719d;
+    text-transform: uppercase;
 }
 
 
@@ -132,10 +133,6 @@ h4 {
 
 header {
     margin-top: 20px;
-}
-
-header nav {
-    /*border-bottom: 1px dotted black;*/
 }
 
 header nav a {
@@ -156,17 +153,18 @@ header nav a.current {
     color: #dc2892;
 }
 
-header .nav-li:first {
+.nav-li:first-child {
     margin-left: 0px;
 }
 
 header .nav-li {
     margin-left: 20px;
+    float: left;
 }
 
 /* maincontent */
 
-#maincontent {
+.test {
     background-image: url(../img/design/punktelinie.png);
     background-repeat: repeat-x;
 }
@@ -178,8 +176,12 @@ header .nav-li {
 
 #sidebar {
     /*border-bottom: 1px dotted black;*/
-    background-image: url(../img/design/punktelinie.png);
-    background-repeat: repeat-x;
+    /*background-image: url(../img/design/punktelinie.png);
+    background-repeat: repeat-x;*/
+}
+
+#sidebar h3 {
+    padding-top: 10px;
 }
 
 #moodboard {
@@ -257,8 +259,17 @@ header .nav-li {
 footer {
 	background-color: #000;
     color: #FFF;
-    padding-top: 5px;
     padding-bottom: 10px;
+}
+
+.kontakt {
+    margin-top: 15px;
+    height: auto;
+}
+
+.info {
+    margin-top: 15px;
+    height: auto;
 }
 
 footer p {
@@ -268,6 +279,7 @@ footer p {
 
 footer h3 {
     color: #FFF;
+    margin-top: 15px;
 }
 
 footer a {
@@ -388,5 +400,88 @@ footer a:hover {
 
 .sidebar-nav a.current{
     font-family:'Avenir LT W01 95 Black';
-    color: #F00;
+    color: #dc2892;
+}
+
+/* NAV */
+
+#nav-wrap {
+    width: 100%;
+}
+
+.navigation {
+    background-image: url(../img/design/punktelinie.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+}
+
+.nav-li {
+    line-height: 40px;
+}
+
+.subnav-li {
+    line-height: 40px;
+}
+
+.flexslider img {
+    height: auto;
+    width: auto;
+    max-width: 980px;
+    max-height: 340px;
+}
+
+@media screen and (max-width: 600px) {
+    h1 {
+        font-size: 35px;
+    }
+
+    #menu-icon{
+        position: relative;
+        bottom: 10px;
+        right: 15px;
+        color: #000;
+        width: 62px;
+        height: 54px;
+        cursor: pointer;
+        display: block;
+        float: right;
+        background-image: url(../img/design/menu-icon.png);
+        background-repeat: repeat-x;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .nav-mobile {
+        width: 100%;
+    }
+
+    header .nav-li {
+        background-image: url(../img/design/punktelinie.png);
+        background-repeat: repeat-x;
+        background-position: top;
+        float: none;
+        width: 100%;
+        margin-left: 0px;
+        display: block;
+        line-height: 35px;
+    }
+
+    header .nav-li a{
+        margin-left: 15px;
+
+    }
+
+    .subnav-li {
+        background-image: url(../img/design/punktelinie.png);
+        background-repeat: repeat-x;
+        background-position: top;
+        padding-left: 40px;
+        line-height: 35px;
+    }
+
+    .navigation {
+        background: none;
+    }
 }

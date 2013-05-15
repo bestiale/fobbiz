@@ -155,10 +155,6 @@ FHADMIN_GROUPS_CONFIG = [
     (_('Settings and users'), {
         'apps': ('sites', 'auth'),
     }),
-    # (_('Events'), {
-    #     'apps': ('veranstaltungen'),
-    # }),
-
 ]
 
 FEINCMS_RICHTEXT_INIT_CONTEXT = {

@@ -9,10 +9,11 @@ from feincms.content.application.models import ApplicationContent
 
 from elephantblog.models import Entry
 from elephantblog.contents import BlogEntryListContent
-from elephantblog.navigation_extensions import treeinfo
+#from elephantblog.navigation_extensions import treeinfo
 
 from fobbiz.veranstaltungen.contents import VeranstaltungContent
 from fobbiz.moodboard.models import ShowMoodboard
+from fobbiz.blog.extensions import short_date_navigation
 
 
 
@@ -29,20 +30,14 @@ OEMBED_TYPE_CHOICES = (
 # Feincms Setup
 Page.register_templates(
     {
-        'title': 'Home template',
-        'path': 'home.html',
+        'title': 'Base template',
+        'path': 'base.html',
         'regions': (
             ('main', _('Main content area')),
             ('sidebar', _('Sidebar content area')),
             ('moodboard', _('Moodboard area')),
         ),
-        },{
-        'title': 'Base template',
-        'path': 'base.html',
-        'regions': (
-            ('main', _('Main content area')),
-            ('sidebar', _('Sidebar')),
-            ),
+
 })
 
 Page.register_extensions(

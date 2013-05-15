@@ -6,41 +6,43 @@
 
 {% block content %}
 <!-- contains hAtom microformats proposed by http://www.readability.com/publishers/guidelines/ -->
-<div class="row">
-<article class="hentry">
-    <header>
-        <time class="veranstaltung_date" datetime="{{ entry.published_on|date:'c' }}" pubdate>{{ entry.published_on|date:"j. F Y" }}</time>
-        <h2 class="entry-title">{{ object }}</h2>
-        <span class="small byline">
-            {% for category in entry.categories.all %}
-                <a href="{{ category.get_absolute_url }}">{{ category }}</a>{% if not forloop.last %},{% else %} | {% endif %}
-            {% endfor %}
-            {% if entry.author.get_full_name %}
-            <span class="author source-org vcard">
-                {% trans 'by' %} <span class="fn">{{ entry.author.get_full_name }}</span> |
+<!-- <div class="large-11 columns"> -->
+    <article class="hentry">
+        <header>
+            <time class="veranstaltung_date" datetime="{{ entry.published_on|date:'c' }}" pubdate>{{ entry.published_on|date:"j. F Y" }}</time>
+            <h2 class="entry-title">{{ object }}</h2>
+            <span class="small byline">
+                {% for category in entry.categories.all %}
+                    <a href="{{ category.get_absolute_url }}">{{ category }}</a>{% if not forloop.last %},{% else %} | {% endif %}
+                {% endfor %}
+                {% if entry.author.get_full_name %}
+                <span class="author source-org vcard">
+                    {% trans 'by' %} <span class="fn">{{ entry.author.get_full_name }}</span> |
+                </span>
+                {% endif %}
+                <time class="updated" datetime="{{ entry.last_changed|date:'c' }}"></time>
             </span>
-            {% endif %}
-            <time class="updated" datetime="{{ entry.last_changed|date:'c' }}"></time>
-        </span>
-    </header>
-    <div class="entry-content">
-        {% feincms_render_region object "main" request %}
-    </div>
-</article>
-</div>  
+        </header>
+        <div class="entry-content">
+            {% feincms_render_region object "main" request %}
+        </div>
+    </article>
+<!-- </div> -->
 
 {% endblock %}
 {% block sidebar %}
-<div class="sidebar-nav">
-   <ul class="archiv_nav">
-    {% feincms_nav feincms_page level=3 depth=1 as sublevel %}
-    {% for p in sublevel %}
-        <li class="nav-li">
-            <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
-            {{ p.title }}
-            </a>
-        </li>
-    {% endfor %}
-    </ul>
-</div>
+<!-- <div class="large-11 columns"> -->
+    <div class="sidebar-nav">
+       <ul class="archiv_nav">
+        {% feincms_nav feincms_page level=3 depth=1 as sublevel %}
+        {% for p in sublevel %}
+            <li class="nav-li_blog">
+                <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
+                {{ p.month }} {{ p.year|slice:"-2:" }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+<!-- </div> -->
 {% endblock %}

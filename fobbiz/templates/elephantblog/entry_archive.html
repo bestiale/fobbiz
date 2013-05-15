@@ -7,43 +7,47 @@
 {% block content %}
 {% block content_title %}
 <div class="row">
-    <h1>
-        {% if year %}for {{ year }}{% endif %}
-        {% if month %}for {{ month|date:"F Y" }}{% endif %}
-        {% if day %}for {{ day|date:"j. F Y" }}{% endif %}
-        {% if category %}for {{ category }}{% endif %}
-    </h1>
+    <div class="large-12 columns">
+        <h2>
+            {% if year %}Einträge für {{ year }}{% endif %}
+            {% if month %}Einträge für {{ month|date:"F Y" }}{% endif %}
+            {% if day %}Einträge für {{ day|date:"j. F Y" }}{% endif %}
+            {% if category %}Einträge für {{ category }}{% endif %}
+        </h2>
+    </div>
 </div>
 {% endblock %}
 
 {% block object_list %}
 <div class="row">
-    <div class="hfeed newsfeed">
-    {% for entry in object_list %}
-        <article class="hentry_archive{% if forloop.first %} first{% endif %}">
-            <header>
-                <time class="veranstaltung_date" datetime="{{ entry.published_on|date:"c" }}" pubdate>{{ entry.published_on|date:"j. F Y" }}</time>
-                <h2 class="entry-title">{{ entry }}</h2>
-                <span class="byline small">
-                    {% for category in entry.fetched_categories %}
-                        <a href="{{ category.get_absolute_url }}" rel="tag">{{ category }}</a>{% if not forloop.last %},{% else %} | {% endif %}
-                    {% endfor %}
-                    {% if entry.author.get_full_name %}
-                    <span class="author source-org vcard">
-                        {% trans 'by' %} <span class="fn">{{ entry.author.get_full_name }}</span> |
+    <div class="large-11 columns">
+        <div class="hfeed newsfeed">
+        {% for entry in object_list %}
+            <article class="hentry_archive{% if forloop.first %} first{% endif %}">
+                <header>
+                    <time class="veranstaltung_date" datetime="{{ entry.published_on|date:"c" }}" pubdate>{{ entry.published_on|date:"j. F Y" }}</time>
+                    <h2 class="entry-title">{{ entry }}</h2>
+                    <span class="byline small">
+                        {% for category in entry.fetched_categories %}
+                            <a href="{{ category.get_absolute_url }}" rel="tag">{{ category }}</a>{% if not forloop.last %},{% else %} | {% endif %}
+                        {% endfor %}
+                        {% if entry.author.get_full_name %}
+                        <span class="author source-org vcard">
+                            {% trans 'by' %} <span class="fn">{{ entry.author.get_full_name }}</span> |
+                        </span>
+                        {% endif %}
                     </span>
-                    {% endif %}
-                </span>
-            </header>
-            <div class="entry-summary">
-                {{ entry.first_richtext.render|truncatewords:20 }}
-                <a href="{{ entry.get_absolute_url }}">
-                    <img src="{{ STATIC_URL }}img/design/arrow-mehr.png">
-                    mehr dazu
-                </a>
-            </div>
-        </article>
-    {% endfor %}
+                </header>
+                <div class="entry-summary">
+                    {{ entry.first_richtext.render|truncatewords:20 }}
+                    <a href="{{ entry.get_absolute_url }}">
+                        <img src="{{ STATIC_URL }}img/design/arrow-mehr.png">
+                        mehr dazu
+                    </a>
+                </div>
+            </article>
+        {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
@@ -70,16 +74,16 @@
 {% endblock %}
 {% endblock %}
 {% block sidebar %}
-<div class="sidebar-nav">
-   <ul class="archiv_nav">
-    {% feincms_nav feincms_page level=3 depth=1 as sublevel %}
-    {% for p in sublevel %}
-        <li class="nav-li">
-            <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
-            {{ p.title }}
-            </a>
-        </li>
-    {% endfor %}
-    </ul>
-</div>
+    <div class="sidebar-nav">
+       <ul class="archiv_nav">
+        {% feincms_nav feincms_page level=3 depth=1 as sublevel %}
+        {% for p in sublevel %}
+            <li class="nav-li_blog">
+                <a href="{{ p.get_absolute_url }}" class="{% if p.slug in request.path %}current{% endif %}">
+                {{ p.month }} {{ p.year|slice:"-2:" }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

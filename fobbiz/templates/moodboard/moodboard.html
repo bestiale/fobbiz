@@ -7,7 +7,7 @@
 	  <ul class="slides">
 	  	{% for mgo in moodboard_list %}
 	    <li>
-	    	<img src="{{ mgo.teaser_image.file.url|thumbnail:'100x100' }}"/>
+	    	<img src="{{ mgo.teaser_image.file.url }}"/>
     	{% if mgo.title %}
 	  	<div class="teaser-text">
             <h3>{{ mgo.title }}</h3>

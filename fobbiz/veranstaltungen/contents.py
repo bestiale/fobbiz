@@ -21,29 +21,28 @@ class VeranstaltungContent(models.Model):
 		verbose_name_plural = _("Veranstaltungen")
 
 	def render(self, request, context, **kwargs):
-		anmeldung_list = Anmeldung.objects.all()
-
+		
 		if request.method == 'POST':
 			veranstaltung = get_object_or_404(Veranstaltung, slug=request.POST['slug'])
+
 			form = AnmeldungForm(request.POST)
-			if form.is_valid():
-				for anmeldung in anmeldung_list:
-					if request.POST['e_mail'] in anmeldung.e_mail:
-						return render_to_string("veranstaltungen/already_registered.html",{
-							'content': self,
-							'false': "false",
-						})
-					else:
-					    anmeldung = form.save(commit=False)
-					    anmeldung.veranstaltung = veranstaltung
-					    anmeldung.save()
-					    self.send_infomail(veranstaltung)
-					    if veranstaltung.plaetze >= 0:
-					        veranstaltung.plaetze = veranstaltung.plaetze - 1
-					        veranstaltung.save()
-					    return render_to_string("veranstaltungen/thanks.html",{
+			if form.is_valid():				
+				if request.session.get('veranstaltung') == request.POST['slug']:
+					return render_to_string("veranstaltungen/already_registered.html",{
 								'content': self,
-					    	})
+					})
+				else:
+					anmeldung = form.save(commit=False)
+					anmeldung.veranstaltung = veranstaltung
+					anmeldung.save()
+					request.session['veranstaltung'] = request.POST['slug']
+					self.send_infomail(veranstaltung)
+					if veranstaltung.plaetze >= 0:
+					    veranstaltung.plaetze = veranstaltung.plaetze - 1
+					    veranstaltung.save()
+					return render_to_string("veranstaltungen/thanks.html",{
+							'content': self,
+					})
 		else:
 		    form = AnmeldungForm()
 		return render_to_string("veranstaltungen/anmelde_form.html",{
@@ -52,11 +51,11 @@ class VeranstaltungContent(models.Model):
 			'form': form,
 			},
 			context_instance = RequestContext(request)
-			)
+		)
 
 	def send_infomail(request, veranstaltung):
 
-	    subject = 'Neue Anmeldung für %s" % veranstaltung'
+	    subject = u'Neue Anmeldung für %s' % veranstaltung
 	    message =   """
 	                Es ist eine neue Anmeldung für diese Veranstaltung vorhanden.
 	                Bitte loggen Sie sich im Adminbereich ein um diese Anzusehen

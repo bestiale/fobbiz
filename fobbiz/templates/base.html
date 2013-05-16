@@ -11,12 +11,12 @@
     <meta property="og:title" content="{% block og-title %}{{ feincms_page.page_title }}{% endblock %}">
     <meta property="og:type" content="{% block og-type %}website{% endblock %}">
     <meta property="og:url" content="http://{{ request.get_host }}{{ request.get_full_path }}">
-    <meta property="fb:app_id" content="{{ FACEBOOK_APP_ID }}">
     {% block extra-og-tags %}{% endblock %}
 
     <link rel="stylesheet" href="{{ STATIC_URL }}css/flexslider.css" type="text/css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/foundation.min.css" type="text/css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css">
+
     <link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/41518cde-dd45-418f-b869-51abe0d07629.css"/>
 
     <title>{% block title %}{{ feincms_page.page_title }}{% endblock %}</title>
@@ -24,75 +24,78 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="large-12 columns">
-            <header>
-                <nav id="nav-wrap">
-                <img src="{{ STATIC_URL }}img/design/fobbiz-logo.png">
-                    <div class="row">
-                        <div class="large-12 columns navigation">
-                            <ul class="nav">
-                            {% feincms_nav feincms_page level=1 depth=1 as toplevel %}
-                            {% for p in toplevel %}
-                                <li class="nav-li">
-                                    <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
-                                    {{ p.title }}
-                                    </a>
-                                </li>
-                                {%endfor%}
-                            </ul>
-                        </div>
-                    </div>
-                    {% feincms_nav feincms_page level=2 depth=1 as sublevel %}
-                    <div class="row">
-                        <div class="large-12 columns navigation">
-                            <ul class="nav">
-                                {% for p in sublevel %}
-                                    <li class="subnav-li">
+    <div class="wrapper">
+        <div class="row">
+            <div class="large-12 columns">
+                <header>
+                    <nav id="nav-wrap">
+                    <img src="{{ STATIC_URL }}img/design/fobbiz-logo.png">
+                        <div class="row">
+                            <div class="large-12 columns navigation">
+                                <ul class="nav">
+                                {% feincms_nav feincms_page level=1 depth=1 as toplevel %}
+                                {% for p in toplevel %}
+                                    <li class="nav-li">
                                         <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
                                         {{ p.title }}
                                         </a>
                                     </li>
-                                {% endfor %}
-                            </ul>
+                                    {%endfor%}
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </nav>
-            </header>
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-12 columns">
-            {% block moodboard %}
-                {% feincms_render_region feincms_page 'moodboard' request %}
-            {% endblock %}
-        </div>
-    </div>
-    <div class="row">
-        <div id="maincontent" class="large-8 columns">
-            <div class="row">
-                <div class="large-12 columns">
-                    <h1>{% if feincms_page.content_title %}{{ feincms_page.content_title }}{% else %}{{ feincms_page.title }}{% endif %}</h1>
-                </div>
+                        {% feincms_nav feincms_page level=2 depth=1 as sublevel %}
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <ul class="nav">
+                                    {% for p in sublevel %}
+                                        <li class="subnav-li">
+                                            <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
+                                            {{ p.title }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
             </div>
-            <div class="row">
-                <div class="large-12 columns">
-                {% block content %}
-                    {% feincms_render_region feincms_page 'main' request %}
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                {% block moodboard %}
+                        {% feincms_render_region feincms_page 'moodboard' request %}
                 {% endblock %}
-                </div>
-            </div>  
+            </div>
         </div>
-        <div id="sidebar" class="large-4 columns">
-            <div class="row">
-                <div class="large-12 columns">
-                <h3>Aktuell</h3>
-                    {% block sidebar %}
-                        {% feincms_render_region feincms_page 'sidebar' request %}
+        <div class="row">
+            <div id="maincontent" class="large-8 columns">
+                <div class="row">
+                    <div class="large-12 columns">
+                        <h1 class="title">{% if feincms_page.content_title %}{{ feincms_page.content_title }}{% else %}{{ feincms_page.title }}{% endif %}</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                    {% block content %}
+                        {% feincms_render_region feincms_page 'main' request %}
                     {% endblock %}
+                    </div>
+                </div>  
+            </div>
+            <div id="sidebar" class="large-4 columns">
+                <div class="row">
+                    <div class="large-12 columns">
+                    <h3 class="title">Aktuell</h3>
+                        {% block sidebar %}
+                            {% feincms_render_region feincms_page 'sidebar' request %}
+                        {% endblock %}
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="push"></div>
     </div>
 
     <footer>

@@ -1,21 +1,31 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
+/*********************
+    CSS Stylesheet for fobbiz.ch
+    Author: R. Coroneo
+    Date: 16.05.2013
+*********************/
+
+/* 
+    FONTS
+    font-family:'Avenir LT W01 95 Black';
+    font-family:'Avenir LT W01 85 Heavy';
+    font-family:'AvenirLTW01-85HeavyObli';
+    font-family:'Avenir LT W01 35 Light';
+    font-family:'AvenirLTW01-95BlackObli';
 */
 
-/* FONTS
-font-family:'Avenir LT W01 95 Black';
-font-family:'Avenir LT W01 85 Heavy';
-font-family:'AvenirLTW01-85HeavyObli';
-font-family:'Avenir LT W01 35 Light';
-font-family:'AvenirLTW01-95BlackObli';
+/* 
+    FONT-COLORS 
+    pink: #dc2892;
+    black: #000;
+    blue: #3e719d;
 */
 
-/* COLORS 
 
-pink: #dc2892;
-black: #000;
-blue: #3e719d;
+/* 
+    CSS RESET by
+    http://meyerweb.com/eric/tools/css/reset/
+    v2.0 | 20110126
+    License: none (public domain)
 */
 
 html, body, div, span, applet, object, iframe,
@@ -62,39 +72,16 @@ table {
 }
 
 
-/* sticky footer */
+/*
+    MAIN STYLES
+*/
 
-html {
-    position: relative;
-    min-height: 100%;
+html, body {
+    height: 100%;
 }
-
-
-/* helper classes */
-
-.clear {
-    clear:both;
-}
-
-.left { float: left; }
-.right { float: right; }
-.small { font-size: 10px }
-
-.image.left {
-    margin: 0 10px 10px 28px;
-}
-
-.image.right {
-    margin: 0 28px 10px 10px;
-}
-
-
-/* main styles */
 
 body {
     border-top: 5px solid #3e719d;
-    padding: 0;
-    margin: 0;
     font-family: 'Avenir LT W01 95 Black', Arial, Helvetica, sans-serif;
 }
 
@@ -128,14 +115,30 @@ h4 {
     text-transform: uppercase;
 }
 
+.title {
+    padding-top: 10px;
+}
 
-/* header */
+
+/* 
+    HEADER
+*/
 
 header {
     margin-top: 20px;
 }
 
-header nav a {
+/*
+    NAVIGATION
+*/
+
+.navigation {
+    background-image: url(../img/design/punktelinie.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+}
+
+.nav a {
     font-family: 'Avenir LT W01 85 Heavy';
     text-transform: uppercase;
     color: #3e719d;
@@ -143,52 +146,81 @@ header nav a {
     text-decoration: none;
 }
 
-header nav a:hover {
+.nav a:hover {
     font-family: 'Avenir LT W01 95 Black';
     color: #000;
 }
 
-header nav a.current {
+.nav a.current {
     font-family: 'Avenir LT W01 95 Black';
     color: #dc2892;
+}
+
+.nav-li {
+    margin-left: 20px;
+    float: left;
+    line-height: 40px;
 }
 
 .nav-li:first-child {
     margin-left: 0px;
 }
 
-header .nav-li {
-    margin-left: 20px;
-    float: left;
+.subnav-li {
+    line-height: 40px;
 }
 
-/* maincontent */
+/*
+    MOODBOARD
+*/
 
-.test {
+.flexslider img {
+    height: auto;
+    width: auto;
+    max-width: 980px;
+    max-height: 340px;
+}
+
+/* 
+    CONTROL NAV MOODBOARD
+*/
+
+.flexslider {
+    background: #fff;
+}
+
+.flex-control-nav {
+    text-align: left;
+}
+
+.flex-control-paging li a {
+    background: #3e719d; 
+}
+
+.flex-control-paging li a:hover {
+    background: #000; 
+}
+
+.flex-control-paging li a.flex-active { 
+    background: #dc2892;
+}
+
+/*
+    MAINCONTENT
+*/
+
+#maincontent {
     background-image: url(../img/design/punktelinie.png);
     background-repeat: repeat-x;
+    background-position: top;
+    padding-bottom: 20px;
 }
 
-#sidebar p {
-    font-family:'Avenir LT W01 35 Light';
-    font-size: 16px;
-}
+/* 
+    VERANSTALTUNG
+*/
 
-#sidebar {
-    /*border-bottom: 1px dotted black;*/
-    /*background-image: url(../img/design/punktelinie.png);
-    background-repeat: repeat-x;*/
-}
-
-#sidebar h3 {
-    padding-top: 10px;
-}
-
-#moodboard {
-    display: block;
-}
-
-#veranstaltung {
+.veranstaltung {
     background-image: url(../img/design/punktelinie.png);
     background-repeat: repeat-x;
     background-position: top;
@@ -196,19 +228,19 @@ header .nav-li {
     padding: 15px 0px;
 }
 
+.veranstaltung_info {
+    margin-top: 20px;
+}
+
 #veranstaltung h1, h2 {
-    text-transform: uppercase;
     margin-top: 5px;
 }
+
 #veranstaltung img {
     height: 170px;
     width: 300px;
     margin-right: 10px;
     float: left;
-}
-
-.veranstaltung form {
-    text-transform: uppercase;
 }
 
 .veranstaltung_date {
@@ -218,7 +250,6 @@ header .nav-li {
 }
 
 .veranstaltung-form label{
-    text-transform: uppercase;
     font-family: 'Avenir LT W01 85 Heavy';
     font-size: 18px;
     color: #000;
@@ -233,6 +264,7 @@ header .nav-li {
 .veranstaltung-form select {
     margin-bottom: 15px;
 }
+
 .veranstaltung-form .submit {
     float: right;
     border: none;
@@ -254,12 +286,61 @@ header .nav-li {
     color: #000;
 }
 
-/* footer */
+/*
+    SIDEBAR
+*/
+
+#sidebar {
+    background-image: url(../img/design/punktelinie.png);
+    background-repeat: repeat-x;
+    background-position: top;
+}
+
+#sidebar p {
+    font-family:'Avenir LT W01 35 Light';
+    font-size: 16px;
+}
+
+.side_date {
+    font-family:'AvenirLTW01-85HeavyObli';
+    font-size: 14px;
+    color: #3e719d;
+}
+
+.sidebar-nav a{
+    font-family:'Avenir LT W01 85 Heavy';
+    font-size: 18px;
+}
+
+.sidebar-nav a:hover {
+    font-family:'Avenir LT W01 95 Black';
+    color: #000;
+}
+
+.sidebar-nav a.current{
+    font-family:'Avenir LT W01 95 Black';
+    color: #dc2892;
+}
+
+/* 
+    FOOTER
+*/
 
 footer {
 	background-color: #000;
     color: #FFF;
     padding-bottom: 10px;
+}
+
+
+footer p {
+    color: #FFF;
+    font-size: 12px;
+}
+
+footer h3 {
+    color: #FFF;
+    margin-top: 15px;
 }
 
 .kontakt {
@@ -272,25 +353,32 @@ footer {
     height: auto;
 }
 
-footer p {
-    color: #FFF;
-    font-size: 12px;
+/*
+    STICKY FOOTER
+*/
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -100px;
 }
 
-footer h3 {
-    color: #FFF;
-    margin-top: 15px;
+footer, .push {
+    min-height: 100px;
+    height: auto;
 }
 
-footer a {
-    text-decoration: none;
-}
+/* 
+    BLOG
+*/
 
-footer a:hover {
-    color: ;
+.hentry_archive {
+    background-image: url(../img/design/punktelinie.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    padding-bottom: 20px;
 }
-
-/* Blog */
 
 .entry-content img {
     float: left;
@@ -375,60 +463,10 @@ footer a:hover {
     background: url(../img/design/arrow-right.png)0 -18px;
 }
 
-.hentry_archive {
-    background-image: url(../img/design/punktelinie.png);
-    background-repeat: repeat-x;
-    background-position: bottom;
-    padding-bottom: 20px;
-}
 
-.side_date {
-    font-family:'AvenirLTW01-85HeavyObli';
-    font-size: 14px;
-    color: #3e719d;
-}
-
-.sidebar-nav a{
-    font-family:'Avenir LT W01 85 Heavy';
-    font-size: 18px;
-}
-
-.sidebar-nav a:hover {
-    font-family:'Avenir LT W01 95 Black';
-    color: #000;
-}
-
-.sidebar-nav a.current{
-    font-family:'Avenir LT W01 95 Black';
-    color: #dc2892;
-}
-
-/* NAV */
-
-#nav-wrap {
-    width: 100%;
-}
-
-.navigation {
-    background-image: url(../img/design/punktelinie.png);
-    background-repeat: repeat-x;
-    background-position: bottom;
-}
-
-.nav-li {
-    line-height: 40px;
-}
-
-.subnav-li {
-    line-height: 40px;
-}
-
-.flexslider img {
-    height: auto;
-    width: auto;
-    max-width: 980px;
-    max-height: 340px;
-}
+/* 
+    RESPONSIVE
+*/
 
 @media screen and (max-width: 600px) {
     h1 {
@@ -449,15 +487,15 @@ footer a:hover {
         background-repeat: repeat-x;
     }
 
+    .navigation {
+        background: none;
+    }
+
     .nav {
         display: none;
     }
 
-    .nav-mobile {
-        width: 100%;
-    }
-
-    header .nav-li {
+    .nav-li {
         background-image: url(../img/design/punktelinie.png);
         background-repeat: repeat-x;
         background-position: top;
@@ -468,7 +506,7 @@ footer a:hover {
         line-height: 35px;
     }
 
-    header .nav-li a{
+    .nav-li a{
         margin-left: 15px;
 
     }
@@ -479,9 +517,5 @@ footer a:hover {
         background-position: top;
         padding-left: 40px;
         line-height: 35px;
-    }
-
-    .navigation {
-        background: none;
     }
 }

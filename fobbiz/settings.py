@@ -192,4 +192,4 @@ ABSOLUTE_URL_OVERRIDES = {
     'elephantblog.categorytranslation': elephantblog_categorytranslation_url_app,
 }
 
-BLOG_PAGINATE_BY = 5
+BLOG_PAGINATE_BY = 1

@@ -15,7 +15,7 @@ from django.utils.timezone import now
 from .models import Veranstaltung, Anmeldung
 
 class VeranstaltungAdmin(admin.ModelAdmin):
-	pass
+	list_filter = ('datum',)
 
 
 def excel_export(modeladmin, request, queryset):
@@ -68,7 +68,7 @@ excel_export.short_description = 'Anmeldungen Export (CSV, UTF-8)'
 class AnmeldungAdmin(admin.ModelAdmin):
 
 	list_filter = ('veranstaltung',)
-	list_display = ('vorname', 'nachname', 'e_mail', 'veranstaltung')
+	list_display = ('vorname', 'nachname', 'e_mail', 'veranstaltung', 'registriert')
 	actions = [excel_export]
 
 

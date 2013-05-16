@@ -9,15 +9,11 @@ class Veranstaltung(models.Model):
 
 	titel = models.CharField(_('title'), max_length=100)
 	slug = models.SlugField(_('slug'), unique=True)
-	#image = models.ImageField(_('image'),
-		#upload_to="veranstaltungen/")
-	#beschreibung = models.TextField(_('description'))
+	ort = models.CharField(_('ort'), max_length=200, blank=True)
 	datum = models.DateTimeField(_('date'), blank=True)
-	plaetze = models.IntegerField(_('place'), blank=True, null=True)
-	#is_active = models.BooleanField(_('is active'), default=True)
-	#erfasst = models.DateTimeField(_('add'), auto_now_add=True)
-	#aktualisiert = models.DateTimeField(_('update'), auto_now=True)
-
+	plaetze = models.IntegerField(_('place'), 
+		help_text="Leer lassen wenn unlimitiert",
+		blank=True, null=True)
 
 	class Meta:
 		verbose_name = u'Veranstaltung'
@@ -25,6 +21,7 @@ class Veranstaltung(models.Model):
 
 	def __unicode__(self):
 		return self.titel
+
 
 	@models.permalink
 	def get_absolute_url(self):
@@ -38,7 +35,8 @@ class Anmeldung(models.Model):
 		('m', u'Herr'),
 	)
 
-	veranstaltung = models.ForeignKey(Veranstaltung, related_name='veranstaltung')
+	veranstaltung = models.ForeignKey(Veranstaltung, related_name='anmeldungen')
+	registriert = models.DateTimeField(_('angemeldet am'), auto_now=True)
 	anrede = models.CharField(_('anrede'), choices=ANREDE_CHOICES, max_length=1)
 	vorname = models.CharField(_('first name'), max_length=100)
 	nachname = models.CharField(_('last name'), max_length=100)
@@ -46,6 +44,7 @@ class Anmeldung(models.Model):
 	street_nr = models.CharField(_('adresse'), max_length=200)
 	plz = models.IntegerField(_('plz'))
 	ort = models.CharField(_('ort'), max_length=100)
+
 
 	class Meta:
 		verbose_name = u'Anmeldung'

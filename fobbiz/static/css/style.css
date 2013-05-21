@@ -519,7 +519,7 @@ footer, .push {
         line-height: 35px;
     }
 
-    .veranstaltung-form h3 {
+    .veranstaltung-form label {
         font-size: 14px;
     }
 }

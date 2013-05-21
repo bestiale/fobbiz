@@ -27,7 +27,7 @@ class VeranstaltungContent(models.Model):
 
 			form = AnmeldungForm(request.POST)
 			if form.is_valid():				
-				if request.session.get('veranstaltung') == request.POST['slug']:
+				if request.session.get('veranstaltung') == request.POST['slug'] and	request.session.get('email') == request.POST['e_mail']:
 					return render_to_string("veranstaltungen/already_registered.html",{
 								'content': self,
 					})
@@ -36,6 +36,7 @@ class VeranstaltungContent(models.Model):
 					anmeldung.veranstaltung = veranstaltung
 					anmeldung.save()
 					request.session['veranstaltung'] = request.POST['slug']
+					request.session['email'] = request.POST['e_mail']
 					self.send_infomail(veranstaltung)
 					if veranstaltung.plaetze >= 0:
 					    veranstaltung.plaetze = veranstaltung.plaetze - 1

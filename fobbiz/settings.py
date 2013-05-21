@@ -54,9 +54,9 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
-AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', '')
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '1PX8WAM50HHB07NWREG2')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', 'X4rjqgrOkJy/9Smm8z6ZZd51PoalkFOrbBMWlwPi')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME', 'fobbizch')
 
 MEDIA_ROOT = os.path.join(APP_BASEDIR, 'uploads')
 MEDIA_URL = '/uploads/'

@@ -470,7 +470,7 @@ footer, .push {
 
 @media screen and (max-width: 600px) {
     h1 {
-        font-size: 35px;
+        font-size: 30px;
     }
 
     #menu-icon{
@@ -517,5 +517,9 @@ footer, .push {
         background-position: top;
         padding-left: 40px;
         line-height: 35px;
+    }
+
+    .veranstaltung-form h3 {
+        font-size: 14px;
     }
 }

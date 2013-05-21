@@ -125,7 +125,7 @@ h4 {
 */
 
 header {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 
 .logo {
@@ -298,6 +298,10 @@ header {
     background-image: url(../img/design/punktelinie.png);
     background-repeat: repeat-x;
     background-position: top;
+}
+
+#sidebar .hentry {
+    margin-top: 20px;
 }
 
 #sidebar p {

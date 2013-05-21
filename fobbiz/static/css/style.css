@@ -128,7 +128,7 @@ header {
     margin-top: 20px;
 }
 
-header img {
+.logo {
     margin-top: 20px;
 }
 
@@ -330,19 +330,19 @@ header img {
     FOOTER
 */
 
-footer {
+.footer {
 	background-color: #000000;
     color: #FFFFFF;
     padding-bottom: 10px;
 }
 
 
-footer p {
+.footer p {
     color: #FFFFFF;
     font-size: 12px;
 }
 
-footer h3 {
+.footer h3 {
     color: #FFFFFF;
     margin-top: 15px;
 }
@@ -368,7 +368,7 @@ footer h3 {
     margin: 0 auto -100px;
 }
 
-footer, .push {
+.footer, .push {
     min-height: 100px;
     height: auto;
 }

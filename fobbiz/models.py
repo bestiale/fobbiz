@@ -9,7 +9,6 @@ from feincms.content.application.models import ApplicationContent
 
 from elephantblog.models import Entry
 from elephantblog.contents import BlogEntryListContent
-#from elephantblog.navigation_extensions import treeinfo
 
 from fobbiz.veranstaltungen.contents import VeranstaltungContent
 from fobbiz.moodboard.models import ShowMoodboard
@@ -72,4 +71,5 @@ Entry.create_content_type(RichTextContent)
 Entry.create_content_type(MediaFileContent, TYPE_CHOICES=MEDIA_TYPE_CHOICES)
 Entry.create_content_type(OembedContent, TYPE_CHOICES=OEMBED_TYPE_CHOICES)
 Entry.create_content_type(RawContent)
+# Event Content
 Entry.create_content_type(VeranstaltungContent)

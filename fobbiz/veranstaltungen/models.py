@@ -1,9 +1,18 @@
 # encoding: utf-8
 
+"""
+    filename:       models.py
+    author:         R. Coroneo
+    date:           21.05.2013
+    description:    Models needed for Event and Registration to a Event.
+"""
+
 from django.db import models
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
-from django.template.defaultfilters import slugify
+
+
+# Event Model
 
 class Veranstaltung(models.Model):
 
@@ -27,6 +36,8 @@ class Veranstaltung(models.Model):
 	def get_absolute_url(self):
 		return ('veranstaltung_detail', (), {'slug': self.slug})
 
+
+# Registration Model
 
 class Anmeldung(models.Model):
 

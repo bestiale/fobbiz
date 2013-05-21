@@ -1,4 +1,11 @@
 # encoding: utf-8
+
+"""
+    filename:       admin.py
+    author:         R. Coroneo
+    date:           21.05.2013
+    description:    Admin Settings for Events and Registration. Export as CSV
+"""
 import csv
 
 from datetime import date
@@ -15,7 +22,10 @@ from django.utils.timezone import now
 from .models import Veranstaltung, Anmeldung
 
 class VeranstaltungAdmin(admin.ModelAdmin):
-	list_filter = ('datum',)
+    list_filter = ('datum',)
+    prepopulated_fields = {
+        'slug': ('titel',),
+    }
 
 
 def excel_export(modeladmin, request, queryset):

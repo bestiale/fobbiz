@@ -1,9 +1,19 @@
+#coding=utf-8
+
+"""
+    filename:       models.py
+    author:         R. Coroneo
+    date:           21.05.2013
+    description:    Needed models for moodboard inclusive applicationcontent.
+"""
+
 from django.db import models
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 from feincms.module.medialibrary.models import MediaFile
 
+# Moodboard Model
 
 class Moodboard(models.Model):
     title = models.CharField(_('title'), max_length=255, blank=True)
@@ -19,6 +29,7 @@ class Moodboard(models.Model):
     class Meta:
         verbose_name = _('moodboard')
 
+# ApplicationContent
 
 class ShowMoodboard(models.Model):
     class Meta():

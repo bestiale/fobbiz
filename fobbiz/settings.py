@@ -1,3 +1,10 @@
+"""
+    filename:       settings.py
+    author:         R. Coroneo
+    date:           21.05.2013
+    description:    Settings for the Project "fobbiz.ch"
+"""
+
 import os
 import sys
 import dj_database_url
@@ -202,4 +209,4 @@ ABSOLUTE_URL_OVERRIDES = {
     'elephantblog.categorytranslation': elephantblog_categorytranslation_url_app,
 }
 
-BLOG_PAGINATE_BY = 1
+BLOG_PAGINATE_BY = 5

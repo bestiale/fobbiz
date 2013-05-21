@@ -33,8 +33,6 @@ else:
 urlpatterns += patterns('',
     # Blog urls
     url(r'^blog/', include('elephantblog.urls')),
-    # Veranstaltung urls
-    url(r'^veranstaltung/', include('fobbiz.veranstaltungen.urls')),
     # Moodboard urls
     url(r'^moodboard/', include('fobbiz.moodboard.urls')),
     # FeinCMS urls

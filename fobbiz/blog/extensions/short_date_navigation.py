@@ -1,3 +1,13 @@
+"""
+    filename:       short_date_navigation.py
+    author:         R. Coroneo
+    date:           21.05.2013
+    description:    little changes for the generation of the archiv navigation.
+                    modified:  
+                        month=u%s' % ugettext(all_months[month-1].strftime('%B')),
+                        year= '%s' % year,
+"""
+
 from django.utils.translation import ugettext_lazy as _, ugettext
 
 from elephantblog.navigation_extensions.common import *
@@ -37,8 +47,10 @@ class ShortDateNavigation(NavigationExtension):
                     published_on__month=month).count()
                 if entry_count:
                     yield PagePretender(
-                        title=u'%s' % ugettext(all_months[month-1].strftime('%B')),
+                        # Only the next two lines has been changed
                         month=u'%s' % ugettext(all_months[month-1].strftime('%B')),
+                        year= '%s' % year,
+                        # The lines below already existed
                         url='%s%04d/%02d/' % (page.get_absolute_url(), year, month),
                         tree_id=page.tree_id, # pretty funny tree hack
                         last=month == 12,
@@ -46,5 +58,4 @@ class ShortDateNavigation(NavigationExtension):
                         rght=0,
                         level=page.level+2,
                         slug='%04d/%02d' % (year, month),
-                        year= '%s' % year,
                     )

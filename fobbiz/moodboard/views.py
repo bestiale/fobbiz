@@ -1,3 +1,10 @@
+"""
+    filename:       views.py
+    author:         R. Coroneo
+    date:           21.05.2013
+    description:    returns moodboards to template "moodboard.html"
+"""
+
 from django.shortcuts import get_object_or_404
 from .models import Moodboard
 

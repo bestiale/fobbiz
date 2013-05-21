@@ -1,5 +1,15 @@
 # encoding: utf-8
 
+"""
+    filename:       contents.py
+    author:         R. Coroneo
+    date:           21.05.2013
+    description:    Rendering of the registration form, saving the incoming
+    				Data from form, checking with sessions if registration
+    				already exists in current session with the incoming mail and
+    				event slug
+"""
+
 from django.db import models
 from django.template.loader import render_to_string
 from django.template import RequestContext

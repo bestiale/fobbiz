@@ -58,10 +58,6 @@ Page.create_content_type(ApplicationContent, APPLICATIONS=(
     ('elephantblog.urls', _('Blog'),),
 ))
 
-Page.create_content_type(ApplicationContent, APPLICATIONS=(
-    ('fobbiz.veranstaltungen.urls', 'Veranstaltungen'),
-))
-
 
 # Elephantblog Setup
 Entry.register_regions(

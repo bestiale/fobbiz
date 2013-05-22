@@ -1,20 +1,20 @@
 {% block moodboard %}
 <div id="moodboard" class="row">
 	<div class="flexslider">
-	  <ul class="slides">
+  		<ul class="slides">
 	  	{% for mgo in moodboard_list %}
-	    <li>
-	    	<img src="{{ mgo.teaser_image.file.url }}"/>
-    	{% if mgo.title %}
-	  	<div class="teaser-text">
-            <h3>{{ mgo.title }}</h3>
-            <p>{{ mgo.teaser_text|truncatewords:10 }}</p>
-            <span class="small-button"><a href="{{ mgo.moodboard.link }}" title="{{ mgo.moodboard.link_text }}" class="teaser-button">{{ mgo.link_text }}</a></span>
-        </div>
-        {% endif %}
-    	</li>
+	    	<li>
+	    		<img src="{{ mgo.teaser_image.file.url }}"/>
+    			{% if mgo.title %}
+	  			<div class="teaser-text">
+            		<h3>{{ mgo.title }}</h3>
+            		<p>{{ mgo.teaser_text|truncatewords:10 }}</p>
+            		<span class="small-button"><a href="{{ mgo.moodboard.link }}" title="{{ mgo.moodboard.link_text }}" class="teaser-button">{{ mgo.link_text }}</a></span>
+        		</div>
+        		{% endif %}
+			</li>
 	    {% endfor %}
-	  </ul>
+	  	</ul>
 	</div>
 </div>
 {% endblock %}

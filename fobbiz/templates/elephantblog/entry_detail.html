@@ -28,17 +28,18 @@
 </article>
 
 {% endblock %}
+
 {% block sidebar %}
 <div class="sidebar-nav">
-   <ul class="archiv_nav">
-    {% feincms_nav feincms_page level=3 depth=1 as sublevel %}
-    {% for p in sublevel %}
+    <ul class="archiv_nav">
+        {% feincms_nav feincms_page level=3 depth=1 as sublevel %}
+        {% for p in sublevel %}
         <li class="nav-li_blog">
             <a href="{{ p.get_absolute_url }}" class="{% if p|is_equal_or_parent_of:feincms_page %}current{% endif %}">
             {{ p.month }} {{ p.year|slice:"-2:" }}
             </a>
         </li>
-    {% endfor %}
+        {% endfor %}
     </ul>
 </div>
 {% endblock %}

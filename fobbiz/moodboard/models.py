@@ -7,9 +7,8 @@
     description:    Needed models for moodboard inclusive applicationcontent.
 """
 
-from django.db import models
-from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from django.db import models
 
 from feincms.module.medialibrary.models import MediaFile
 
@@ -28,20 +27,3 @@ class Moodboard(models.Model):
 
     class Meta:
         verbose_name = _('moodboard')
-
-# ApplicationContent
-
-class ShowMoodboard(models.Model):
-    class Meta():
-        abstract = True
-
-    def render(self, request, context, **kwargs):
-
-        moodboards = Moodboard.objects.all()
-
-        if moodboards:
-
-            return render_to_string("moodboard/moodboard.html", {
-                'moodboard_list': moodboards,
-                }, context_instance = context,
-            )

@@ -69,7 +69,7 @@ class VeranstaltungContent(models.Model):
 	    subject = u'Neue Anmeldung für %s' % veranstaltung
 	    message =   """
 	                Es ist eine neue Anmeldung für diese Veranstaltung vorhanden.
-	                Bitte loggen Sie sich im Adminbereich ein um diese Anzusehen
+	                Bitte melden Sie sich im Adminbereich an um diese Anzusehen
 	                """
 	    sender = "fobbiz.ch"
 

@@ -11,15 +11,13 @@ from elephantblog.models import Entry
 from elephantblog.contents import BlogEntryListContent
 
 from fobbiz.veranstaltungen.contents import VeranstaltungContent
-from fobbiz.moodboard.models import ShowMoodboard
+from fobbiz.moodboard.contents import ShowMoodboard
 from fobbiz.blog.extensions import short_date_navigation
 
 
 
 MEDIA_TYPE_CHOICES = (
     ('default', _('Full width')),
-    ('left', _('Left (Half width)')),
-    ('right', _('Right (Half width)')),
 )
 
 OEMBED_TYPE_CHOICES = (
@@ -71,5 +69,6 @@ Entry.create_content_type(RichTextContent)
 Entry.create_content_type(MediaFileContent, TYPE_CHOICES=MEDIA_TYPE_CHOICES)
 Entry.create_content_type(OembedContent, TYPE_CHOICES=OEMBED_TYPE_CHOICES)
 Entry.create_content_type(RawContent)
+
 # Event Content
 Entry.create_content_type(VeranstaltungContent)

@@ -27,17 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'qj8ruoe2gr#%w&amp;03kr1m2lwd^*d46^$jm
 
 # Parse database configuration from $DATABASE_URL
 DEV_DB = os.path.join(APP_BASEDIR, 'dev.db')
-#DATABASES = {'default': dj_database_url.config(default='sqlite:///%s' % DEV_DB)}
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'd4769ou3tv4r9s',
-    'HOST': 'ec2-54-228-219-94.eu-west-1.compute.amazonaws.com',
-    'PORT': 5432,
-    'USER': 'uotqzwlsnmocrz',
-    'PASSWORD': '35R49XmqhxCEQgDGAiUyHU1r87'
-  }
-}
+DATABASES = {'default': dj_database_url.config(default='sqlite:///%s' % DEV_DB)}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

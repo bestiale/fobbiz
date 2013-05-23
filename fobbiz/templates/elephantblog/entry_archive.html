@@ -68,7 +68,7 @@
 
         {% if page_obj.has_next %}
             <a class="page_right" href="?page={{ page_obj.next_page_number }}"></a>
-            <a class="page_right_fast" href="?page={{ page_obj.page_range }}"></a>
+            <a class="page_right_fast" href="?page={{ page_obj.last }}"></a>
         {% endif %}
     </div>
     {% endblock %}

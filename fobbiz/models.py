@@ -1,3 +1,10 @@
+"""
+    filename:       models.py
+    author:         R. Coroneo
+    date:           21.05.2013
+    description:    For FeinCMS needed settings, with template, Content Types, Extensions
+"""
+
 from django.utils.translation import ugettext_lazy as _
 
 from feincms.module.page.models import Page
@@ -48,6 +55,7 @@ Page.create_content_type(MediaFileContent, TYPE_CHOICES=MEDIA_TYPE_CHOICES)
 Page.create_content_type(OembedContent, TYPE_CHOICES=OEMBED_TYPE_CHOICES)
 Page.create_content_type(RawContent)
 Page.create_content_type(BlogEntryListContent)
+# Moodboard Content
 Page.create_content_type(ShowMoodboard)
 
 
